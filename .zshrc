@@ -75,5 +75,7 @@ export PATH=$PATH:~/downloads2
 # Completions
 autoload -U compinit && compinit
 
+autoload -U zmv
+
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
