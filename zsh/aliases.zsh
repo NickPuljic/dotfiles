@@ -10,6 +10,7 @@ alias egrep='egrep --color=auto'
 # alias mv='mv -i'
 # alias rm='rm -i'
 # alias ll='ls -lGaFh'
+alias ls='ls -al'
 
 # Oscar Aliases from jjacob
 # GITHUB ALIASES
@@ -27,43 +28,17 @@ function curr_git_branch() { git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/*
 # function gcam() { git commit -am "$1" ;}
 
 # function gf() { git fetch ;}
-function gf() { git fetch-single-branch-and-create-local-remote-tracking-ref origin "$@" ;}
+#function gf() { git fetch-single-branch-and-create-local-remote-tracking-ref origin "$@" ;}
 
 # function gco() { git checkout "$@" ;}
 function gcom() {
     git checkout master
     git pull origin master
 }
-# function gcob() { git checkout -b "$1";}
-# function gcomgf() { git checkout master; git fetch ;}
-
-# function gd() { git diff ;}
-
-# PANTS ALIASES
-function pt() { ./pants test "$1" ;}
-function ptc() { ./pants test-changed ;}
-function pgpp() { ./pants gen-protobuf-py protobuf/src:: ;}
-function pjb() { ./pants jenkins-build "$@" ;}
-function ubf() { engshare/bin/update-build-files -p ;}
-
-# ARC ALIASES
-function al() { arc lint "$@" ;}
-function ad() { arc diff --coverage "$@" ;}
-function adp() { arc diff --preview ;}
-
-# KAURORA ALIASES
-function ki() { kinit npuljic ;}
-function kjc() { ./kaurora job create "$1" "$2" ;}
-function kjr() { ./kaurora job restart "$1" ;}
-function kus() { ./kaurora update start "$1" "$2" ;}
-function kcs() { ./kaurora cron schedule "$1" "$2" ;}
-function kcst() { ./kaurora cron start "$1" ;}
-function kji() { ./kaurora job inspect "$1" "$2" ;}
-function kjka() { ./kaurora job killall "$1" ;}
 
 # NORMAL COMMAND ALIASES
 # function h() { history ;}
-function cdd() { cd ~/workspace/data ;}
+function cdd() { cd ~/workspace ;}
 function cdh() { cd ~/ ;}
 
 # Emacs commands

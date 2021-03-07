@@ -1,5 +1,3 @@
-source ~/dotfiles/oscar_exports.zsh
-source ~/dotfiles/person_exports.zsh
 source ~/dotfiles/zsh/aliases.zsh
 source ~/dotfiles/zsh/completions.zsh
 
@@ -11,7 +9,7 @@ antigen bundle alias-finder
 antigen bundle colorize
 antigen bundle common-aliases
 antigen bundle git
-# antigen bundle git-auto-fetch
+antigen bundle git-auto-fetch
 antigen bundle history
 antigen bundle pip
 
@@ -43,7 +41,7 @@ antigen theme romkatv/powerlevel10k
 
 antigen apply
 
-DEFAULT_USER="npuljic"
+DEFAULT_USER="nicholaspuljic"
 
 unsetopt share_history
 
