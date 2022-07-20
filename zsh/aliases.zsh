@@ -4,41 +4,15 @@ alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
 
 # Standard Aliases
-# alias la='ls -A'
-# alias l='ls -CF'
-# alias cp='cp -i'
-# alias mv='mv -i'
-# alias rm='rm -i'
-# alias ll='ls -lGaFh'
-alias ls='ls -al'
+alias ll='ls -alGFh'
 
-# Oscar Aliases from jjacob
-# GITHUB ALIASES
-function curr_git_branch() { git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/' ;}
-
-# function gs() { git status ;}
-# function ga() { git add "$@" ;}
-# function gaa() { git add -A ;}
-
-# function gpul() { git pull "$@" ;}
-
-# function gb() { git branch "$@";}
-
-# function gcm() { git commit -m "$1" ;}
-# function gcam() { git commit -am "$1" ;}
-
-# function gf() { git fetch ;}
-#function gf() { git fetch-single-branch-and-create-local-remote-tracking-ref origin "$@" ;}
-
-# function gco() { git checkout "$@" ;}
 function gcom() {
-    git checkout master
-    git pull origin master
+    git checkout master && git pull origin master
 }
 
 # NORMAL COMMAND ALIASES
-# function h() { history ;}
-function cdd() { cd ~/workspace ;}
+function cdd() { cd ~/workspace/stock-unlock/ ;}
+function cda() { cd ~/workspace/ambrosia/ ;}
 function cdh() { cd ~/ ;}
 
 # Emacs commands
