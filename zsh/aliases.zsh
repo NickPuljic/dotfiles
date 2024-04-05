@@ -7,12 +7,11 @@ alias egrep='egrep --color=auto'
 alias ll='ls -alGFh'
 
 function gcom() {
-    git checkout master && git pull origin master
+    git checkout main && git pull origin main
 }
 
 # NORMAL COMMAND ALIASES
-function cdd() { cd ~/workspace/stock-unlock/ ;}
-function cda() { cd ~/workspace/ambrosia/ ;}
+function cdd() { cd ~/workspace/ ;}
 function cdh() { cd ~/ ;}
 
 # Emacs commands
