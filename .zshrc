@@ -1,105 +1,60 @@
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
-
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
-# if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-#   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-# fi
+# https://getantidote.github.io/
+# https://github.com/getantidote/zdotdir
 
 source ~/dotfiles/zsh/aliases.zsh
 source ~/dotfiles/zsh/completions.zsh
 source ~/dotfiles/zsh/history.zsh
 
 # Antidote
-#source ~/antidote.zsh
 source $(brew --prefix)/opt/antidote/share/antidote/antidote.zsh
 antidote load ${ZDOTDIR:-$HOME}/.zsh_plugins.txt
-
-# source ~/antigen.zsh
-
-# antigen use oh-my-zsh
-
-# antigen bundle alias-finder
-#antigen bundle colorize
-# antigen bundle common-aliases
-# antigen bundle git
-# antigen bundle git-auto-fetch
-# antigen bundle history
-# antigen bundle pip
-
-### Fix slowness of pastes with zsh-syntax-highlighting.zsh
-#pasteinit() {
-    #OLD_SELF_INSERT=${${(s.:.)widgets[self-insert]}[2,3]}
-    # zle -N self-insert url-quote-magic
-# }
-
-#pastefinish() {
-    #zle -N self-insert $OLD_SELF_INSERT
-# }
-# zstyle :bracketed-paste-magic paste-init pasteinit
-# zstyle :bracketed-paste-magic paste-finish pastefinish
-### Fix slowness of pastes done
-
-
-# Must be the last normal bundle but first special bundle for highlighting
-# antigen bundle zsh-users/zsh-syntax-highlighting
-
-# antigen bundle scmbreeze/scm_breeze
-# antigen bundle zsh-users/zsh-completions
-# antigen bundle zsh-users/zsh-history-substring-search
-# antigen bundle zsh-users/zsh-autosuggestions
-# antigen bundle tom-doerr/zsh_codex
-
-# antigen theme romkatv/powerlevel10k
-
-# antigen apply
 
 DEFAULT_USER="nickpuljic"
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
-export ALTERNATE_EDITOR=""
-export EDITOR="emacsclient -t"                  # $EDITOR opens in terminal
+# export ALTERNATE_EDITOR=""
+# export EDITOR="emacsclient -t"                  # $EDITOR opens in terminal
 # export VISUAL="emacsclient -c -a emacs"         # $VISUAL opens in GUI mode
-export VISUAL="emacsclient -t" # Visual in terminal lol
+# export VISUAL="emacsclient -t" # Visual in terminal lol
 
 # Completions
 fpath+=~/.zfunc
 autoload -Uz compinit && compinit
 
-# ZMV (renaming)
-autoload -U zmv
-
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-# [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+# For prompt plugins
+autoload -Uz promptinit && promptinit
 
 # Bind keys for history-substring-search
 bindkey '^P' history-substring-search-up
 bindkey '^N' history-substring-search-down
 
+# bun completions
+[ -s "/Users/nickpuljic/.bun/_bun" ] && source "/Users/nickpuljic/.bun/_bun"
 
-# export ZSH_CUSTOM="/Users/nickpuljic/.oh-my-zsh/custom/"
-# source "$ZSH_CUSTOM/plugins/zsh_codex/zsh_codex.plugin.zsh"
-# bindkey '^X' create_completion
-# tabtab source for packages
-# uninstall by removing these lines
-# [[ -f ~/.config/tabtab/__tabtab.zsh ]] && . ~/.config/tabtab/__tabtab.zsh || true
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
 
-# Created by `pipx` on 2024-03-08 18:07:05
-export PATH="$PATH:/Users/nickpuljic/.local/bin"
+# Give Graphite priority
+alias gt='/opt/homebrew/bin/gt'
+#compdef gt
+###-begin-gt-completions-###
+#
+# yargs command completion script
+#
+# Installation: gt completion >> ~/.zshrc
+#    or gt completion >> ~/.zprofile on OSX.
+#
+_gt_yargs_completions()
+{
+  local reply
+  local si=$IFS
+  IFS=$'
+' reply=($(COMP_CWORD="$((CURRENT-1))" COMP_LINE="$BUFFER" COMP_POINT="$CURSOR" gt --get-yargs-completions "${words[@]}"))
+  IFS=$si
+  _describe 'values' reply
+}
+compdef _gt_yargs_completions gt
+###-end-gt-completions-###
 
-# VirtualEnvWrapper
-export WORKON_HOME=$HOME/.virtualenvs
-export PROJECT_HOME=$HOME/workspace
-source /Library/Frameworks/Python.framework/Versions/3.12/bin/virtualenvwrapper.sh
-
-# export ZDOTDIR=~/.config/zsh
-
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh

@@ -7,7 +7,7 @@ alias egrep='egrep --color=auto'
 alias ll='ls -alGFh'
 
 function gcom() {
-    git checkout main && git pull origin main
+    git checkout main && gt sync && git checkout staging && git push && gt checkout main
 }
 
 # NORMAL COMMAND ALIASES
@@ -20,12 +20,12 @@ function edaemonkill() { emacsclient -e '(kill-emacs)' ;}
 function e() { emacsclient -t "$@" ; }
 function ec() { emacsclient -c "$@" ; }
 
-function notify() {alerter -message "done" -sound default ;}
+# function notify() {alerter -message "done" -sound default ;}
 
-function remaster() {
-    local mybranch=$(git symbolic-ref --short HEAD) # puts your current branch in variable mybranch
-    git checkout master && git pull --rebase # pulls the latest master and rebases any local commits you have on master on top of it
-    git rebase master $mybranch -Xours # rebases your branch on top of master, choosing master's commits when there is a conflict
-}
+# function remaster() {
+#     local mybranch=$(git symbolic-ref --short HEAD) # puts your current branch in variable mybranch
+#     git checkout master && git pull --rebase # pulls the latest master and rebases any local commits you have on master on top of it
+#     git rebase master $mybranch -Xours # rebases your branch on top of master, choosing master's commits when there is a conflict
+# }
 
-alias gsort="git for-each-ref --sort=committerdate refs/heads/ --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(color:red)%(objectname:short)%(color:reset) - %(contents:subject) - %(authorname) (%(color:green)%(committerdate:relative)%(color:reset))'"
+# alias gsort="git for-each-ref --sort=committerdate refs/heads/ --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(color:red)%(objectname:short)%(color:reset) - %(contents:subject) - %(authorname) (%(color:green)%(committerdate:relative)%(color:reset))'"
