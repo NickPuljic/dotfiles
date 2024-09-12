@@ -7,7 +7,12 @@ alias egrep='egrep --color=auto'
 alias ll='ls -alGFh'
 
 function gcom() {
-    git checkout main && gt sync && git checkout staging && git push && gt checkout main
+    if ! git diff-index --quiet HEAD --; then
+        echo "Error: There are uncommitted changes. Please commit or stash them before running gcom."
+        return 1
+    fi
+    
+    git checkout main && gt sync  && gt restack && gt submit --stack && git checkout staging && git push && gt checkout main && gb
 }
 
 # NORMAL COMMAND ALIASES
