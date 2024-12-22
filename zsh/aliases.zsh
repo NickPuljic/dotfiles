@@ -12,7 +12,7 @@ function gcom() {
         return 1
     fi
     
-    git checkout main && gt sync  && gt restack && gt submit --stack && git checkout staging && git push && gt checkout main && gb
+    git checkout main && gt sync && gt restack && gt submit --stack && _scmb_git_branch_shortcuts
 }
 
 # NORMAL COMMAND ALIASES
